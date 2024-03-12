@@ -1,0 +1,201 @@
+//package whizzbridge_Automation.merl_extentreports;
+//
+//import org.openqa.selenium.By;
+//import org.openqa.selenium.WebElement;
+//import org.testng.Assert;
+//import org.testng.Reporter;
+//import org.testng.annotations.Test;
+//
+//import com.aventstack.extentreports.ExtentReports;
+//
+//public class merl_TestCases extends merl_Genericmethods {
+//	ExtentReports extent;
+//	String title="MERL";
+//	String username = "admin@merl.com";
+//	String password = "123123";
+//	String userRole = "admin";
+//	String baseUrl = "https://merl-50fb1f6104ab.herokuapp.com/users/sign_in";
+//	// public WebElement pageHeadingElement; // Declare at class level
+//
+//	@Test(priority = 1)
+//	public void Merl_BrowserSetup() {
+//		setUp();
+//	}
+//
+//	@Test(priority = 2)
+//	public void Merl_TimetoLauchApp() throws InterruptedException {
+//		HomePage(baseUrl);
+//	}
+//
+//	@Test(priority = 3)
+//	public void merl_VerifyUrl() throws InterruptedException {
+//		String expectedURL = baseUrl;
+//		String actualURL = driver.getCurrentUrl();
+//
+//		System.out.println("Actual URL: " + actualURL);
+//		System.out.println("Expected URL: " + expectedURL);
+//
+//		Reporter.log("Actual URL: " + actualURL);
+//		Reporter.log("Expected URL: " + expectedURL);
+//
+//		Assert.assertEquals(actualURL, expectedURL, "URLs do not match");
+//
+//	}
+//
+//	@Test(priority = 4)
+//	public void merl_VerifyTitle() throws InterruptedException {
+//	    String expectedTitle = title;
+//        String actualTitle = driver.getTitle();
+//
+//        System.out.println("Actual Title: " + actualTitle);
+//        System.out.println("Expected Title: " + expectedTitle);
+//
+//        Reporter.log("Actual Title: " + actualTitle);
+//        Reporter.log("Expected Title: " + expectedTitle);
+//
+//        Assert.assertEquals(actualTitle, expectedTitle, "Titles do not match");
+//	}
+//
+//	@Test(priority = 4, groups = { "smoke" }, retryAnalyzer = Retry.class)
+//	public void merl_Login() throws InterruptedException {
+//		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		// Locators//
+//		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//		By locatorEmail = By.id("user_email");
+//		WebElement elementemail = driver.findElement(locatorEmail);
+//		waitForElementToAppear(elementemail);
+//
+//		By locatorPassword = By.id("user_password");
+//		WebElement elementPassword = driver.findElement(locatorPassword);
+//		waitForElementToAppear(elementPassword);
+//
+//		By locatorSignIn = By.className("primary-button");
+//		WebElement elementSignIn = driver.findElement(locatorSignIn);
+//		waitForElementToAppear(elementSignIn);
+//
+//		Thread.sleep(1000);
+//		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		// Actions//
+//		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		elementemail.sendKeys(username);
+//		Reporter.log("Login via Email is " + username);
+//		System.out.println("Login via Email is " + username);
+//
+//		elementPassword.sendKeys(password);
+//		Reporter.log("and password is " + password);
+//		System.out.println("and password is " + password);
+//
+//		elementSignIn.click();
+//		Reporter.log("Test Case: Login as " + userRole);
+//		System.out.println("Test Case: Login as " + userRole);
+//	}
+//
+//	@Test(priority = 5)
+//	public void merl_Headertext() throws InterruptedException {
+//		By projectsTextLocator = By.xpath("//div[@class='page-heading']");
+//		WebElement projectsTextElement = driver.findElement(projectsTextLocator);
+//		waitForElementToAppear(projectsTextElement);
+//
+//		String projectsText = projectsTextElement.getText();
+//		System.out.println("Text inside 'Projects' div: " + projectsText);
+//		Reporter.log("Text inside 'Projects' div: " + projectsText);
+//	}
+//
+////	@Test(priority = 6)
+////	public void merl_ProjectsTableData() {
+////		// Find the div containing the project details
+////		WebElement projectDetailsDiv = driver.findElement(By.xpath("//div[@class='body']"));
+////
+////		// Find all rows within the project details
+////		List<WebElement> rows = projectDetailsDiv.findElements(By.xpath(".//div[@class='field']"));
+////
+////		for (WebElement row : rows) {
+////			// Extract title and value within each row
+////			WebElement titleElement = row.findElement(By.xpath(".//div[@class='title']"));
+////			WebElement valueElement = row.findElement(By.xpath(".//div[@class='value']"));
+////
+////			// Print title and value
+////			String title = titleElement.getText();
+////			String value = valueElement.getText();
+////
+////			System.out.println(title + ": " + value);
+////			Reporter.log(title + ": " + value);
+////		}
+////	}
+////
+////	@Test(priority = 7)
+////	public void merl_() throws InterruptedException {
+////		// Locate the div element
+////		WebElement divElement = driver.findElement(By.cssSelector("div.menu[data-action='click->dropdown#toggle']"));
+////		Thread.sleep(3000);
+////		// Locate the <i> tag within the div element
+////		WebElement iTag = divElement.findElement(By.tagName("i"));
+////		// Click on the <i> tag
+////		iTag.click();
+////		Thread.sleep(3000);
+////		// Locate the div element
+////		WebElement divElement1 = driver.findElement(By.cssSelector("div.dropdown[data-dropdown-target='menu']"));
+////		Thread.sleep(3000);
+////		// Find all the anchor elements within the div
+////		List<WebElement> anchorElements = divElement1.findElements(By.tagName("a"));
+////		// Iterate through each anchor element and print its text
+////		for (WebElement anchorElement : anchorElements) {
+////			String text = anchorElement.getText();
+////			System.out.println("Text: " + text);
+////		}
+////		// Using CSS Selector
+////		WebElement editBaselineLink = driver
+////				.findElement(By.cssSelector("a.item[href^='/projects/'][href*='/baselines']"));
+////		editBaselineLink.click();
+////		Thread.sleep(3000);
+////
+////		// Using XPath
+////		WebElement baselineDiv = driver
+////				.findElement(By.xpath("//div[text()='Baselines: OECS PEARL Results Framework']"));
+////
+////		// Perform some action on the element, for example, get text
+////		String baselineText = baselineDiv.getText();
+////		System.out.println("Text inside the div: " + baselineText);
+////
+////		// Example assertion: Check if the baseline text is as expected
+////		Assert.assertEquals(baselineText, "Expected Baseline Text", "Baseline text is incorrect!");
+////		Reporter.log("Baseline text is: " + baselineText);
+////	}
+////
+////	@Test(priority = 8)
+////	public void table() throws InterruptedException {
+////		for (int i = 1; i <= 25; i++) {
+////			// Locate the table element dynamically using index
+////			WebElement currentTable = driver.findElement(By.xpath("(//table)[" + i + "]"));
+////
+////			// Extract and print text from the current table
+////			extractAndPrintTableData(currentTable);
+////
+////			Thread.sleep(3000);
+////
+////		}
+////
+////	}
+////
+////	private static void extractAndPrintTableData(WebElement table) {
+////		// Locate all rows within the table
+////		List<WebElement> rows = table.findElements(By.tagName("tr"));
+////
+////		// Loop through each row
+////		for (WebElement row : rows) {
+////			// Locate all cells (columns) within the row
+////			List<WebElement> cells = row.findElements(By.tagName("td"));
+////
+////			// Loop through each cell to extract and print the text
+////			for (WebElement cell : cells) {
+////				String cellText = cell.getText();
+////				System.out.print(cellText + "\t");
+////				Reporter.log(cellText + "\t");
+////			}
+////
+////			System.out.println(); // Move to the next line after printing all cells of a row
+////		}
+////	}
+//
+//}
